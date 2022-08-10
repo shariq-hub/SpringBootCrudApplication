@@ -11751,3 +11751,108 @@ java.util.concurrent.TimeoutException
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-10 14:02:05.108
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-10 14:02:05.112
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-10 14:04:53.666
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-10 14:04:53.666
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-10 16:13:59.897
+!MESSAGE Stash create error
+!STACK 1
+org.eclipse.team.core.TeamException: Stashing local changes did not successfully complete
+	at org.eclipse.egit.core.op.StashCreateOperation$1.run(StashCreateOperation.java:99)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2380)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2405)
+	at org.eclipse.egit.core.op.StashCreateOperation.execute(StashCreateOperation.java:108)
+	at org.eclipse.egit.ui.internal.stash.StashCreateUI$1.runInWorkspace(StashCreateUI.java:82)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.LockFailedException: Cannot lock D:\Spring-Boot-MasterClass-2\.git\index. Ensure that no other process has an open file handle on the lock file D:\Spring-Boot-MasterClass-2\.git\index.lock, then you may delete the lock file and retry.
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:221)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:292)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:258)
+	at org.eclipse.jgit.lib.Repository.lockDirCache(Repository.java:1285)
+	at org.eclipse.egit.core.RepositoryHandle.lockDirCache(RepositoryHandle.java:319)
+	at org.eclipse.jgit.api.StashCreateCommand.call(StashCreateCommand.java:224)
+	at org.eclipse.egit.core.op.StashCreateOperation$1.run(StashCreateOperation.java:97)
+	... 6 more
+!SUBENTRY 1 org.eclipse.team.core 4 0 2022-08-10 16:13:59.901
+!MESSAGE Stashing local changes did not successfully complete
+!STACK 0
+org.eclipse.jgit.errors.LockFailedException: Cannot lock D:\Spring-Boot-MasterClass-2\.git\index. Ensure that no other process has an open file handle on the lock file D:\Spring-Boot-MasterClass-2\.git\index.lock, then you may delete the lock file and retry.
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:221)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:292)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:258)
+	at org.eclipse.jgit.lib.Repository.lockDirCache(Repository.java:1285)
+	at org.eclipse.egit.core.RepositoryHandle.lockDirCache(RepositoryHandle.java:319)
+	at org.eclipse.jgit.api.StashCreateCommand.call(StashCreateCommand.java:224)
+	at org.eclipse.egit.core.op.StashCreateOperation$1.run(StashCreateOperation.java:97)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2380)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2405)
+	at org.eclipse.egit.core.op.StashCreateOperation.execute(StashCreateOperation.java:108)
+	at org.eclipse.egit.ui.internal.stash.StashCreateUI$1.runInWorkspace(StashCreateUI.java:82)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:43)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.core.jobs 4 2 2022-08-10 16:14:06.377
+!MESSAGE An internal error occurred during: "Adding Files to Index".
+!STACK 0
+org.eclipse.jgit.api.errors.JGitInternalException: Exception caught during execution of add command
+	at org.eclipse.jgit.api.AddCommand.call(AddCommand.java:225)
+	at org.eclipse.egit.ui.internal.actions.CommitActionHandler$3.run(CommitActionHandler.java:216)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.jgit.errors.LockFailedException: Cannot lock D:\Spring-Boot-MasterClass-2\.git\index. Ensure that no other process has an open file handle on the lock file D:\Spring-Boot-MasterClass-2\.git\index.lock, then you may delete the lock file and retry.
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:221)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:292)
+	at org.eclipse.jgit.dircache.DirCache.lock(DirCache.java:258)
+	at org.eclipse.jgit.lib.Repository.lockDirCache(Repository.java:1285)
+	at org.eclipse.egit.core.RepositoryHandle.lockDirCache(RepositoryHandle.java:319)
+	at org.eclipse.jgit.api.AddCommand.call(AddCommand.java:122)
+	... 2 more
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-10 16:14:34.031
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-10 16:14:34.032
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)

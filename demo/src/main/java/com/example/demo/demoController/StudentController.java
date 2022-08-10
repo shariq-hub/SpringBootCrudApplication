@@ -1,22 +1,22 @@
 package com.example.demo.demoController;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.DemoEntity.StudentEntity;
 import com.example.demo.demoRepo.DepartmentEntityRepo;
 import com.example.demo.demoRepo.StudentEntityRepo;
 import com.example.demo.demoService.StudentService;
 import com.example.demo.request.StudentRequest;
 @RestController
+@RequestMapping("/student")
 public class StudentController {
 	@Autowired
 	StudentService studentService;
@@ -26,7 +26,7 @@ public class StudentController {
 	
 	@Autowired
 	DepartmentEntityRepo departmentEntityRepo;
-	@PostMapping("/AddStudent")
+	@PostMapping("/Add")
     public ResponseEntity<Object> addStudent(
        @RequestBody StudentRequest studentRequest)
     {
@@ -39,7 +39,7 @@ public class StudentController {
          
     }
 	
-	@GetMapping("/getStudent/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Object> getStudent(@PathVariable(name="id") int id) {
 		StudentRequest studentRequest=new StudentRequest();
 		studentRequest=studentService.getStudent(id);
@@ -49,7 +49,7 @@ public class StudentController {
 		return new ResponseEntity<Object>("Student Not Found With this Id",HttpStatus.NOT_FOUND);
 	}
 	
-	@PostMapping("/updateStudent/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateStudent(@PathVariable(name="id") int id,@RequestBody StudentRequest studentRequest){
 		if(studentExist(id)) {
 		studentService.updateStudent(id,studentRequest);

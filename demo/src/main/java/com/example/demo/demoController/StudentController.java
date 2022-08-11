@@ -16,7 +16,7 @@ import com.example.demo.demoRepo.StudentEntityRepo;
 import com.example.demo.demoService.StudentService;
 import com.example.demo.request.StudentRequest;
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/students")
 public class StudentController {
 	@Autowired
 	StudentService studentService;
@@ -26,7 +26,7 @@ public class StudentController {
 	
 	@Autowired
 	DepartmentEntityRepo departmentEntityRepo;
-	@PostMapping("/Add")
+	@PostMapping
     public ResponseEntity<Object> addStudent(
        @RequestBody StudentRequest studentRequest)
     {
@@ -43,7 +43,7 @@ public class StudentController {
 	public ResponseEntity<Object> getStudent(@PathVariable(name="id") int id) {
 		StudentRequest studentRequest=new StudentRequest();
 		studentRequest=studentService.getStudent(id);
-		if(studentExist(id)==true) {
+		if(studentExist(id)) {
 		return new ResponseEntity<Object>(studentRequest,HttpStatus.OK);
 		}
 		return new ResponseEntity<Object>("Student Not Found With this Id",HttpStatus.NOT_FOUND);
@@ -57,10 +57,6 @@ public class StudentController {
 		}
 		return new ResponseEntity<Object>("Student Not Found with this Id",HttpStatus.NOT_FOUND);
 	}
-	
-	
-	
-	
 	
 	private boolean departmentExist(int id) {
 		return departmentEntityRepo.existsById(id);

@@ -1,7 +1,5 @@
 package com.example.demo.demoController;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,15 +10,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.HttpServerErrorException;
 
-import com.example.demo.DemoEntity.TeacherEntity;
 import com.example.demo.demoRepo.TeacherEntityRepo;
 import com.example.demo.demoService.TeacherService;
 import com.example.demo.request.TeacherRequest;
 
 @RestController
-@RequestMapping("/teacher")
+@RequestMapping("/teachers")
 public class TeacherController {
 	
 	@Autowired
@@ -29,7 +25,7 @@ public class TeacherController {
 	@Autowired
 	TeacherEntityRepo teacherEntityRepo;
 	
-	@PostMapping("/Add")
+	@PostMapping
     public ResponseEntity<Object> AddTeacher(
        @RequestBody TeacherRequest teacherRequest)
     {

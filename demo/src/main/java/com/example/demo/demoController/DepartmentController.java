@@ -15,7 +15,7 @@ import com.example.demo.demoService.DepartmentService;
 import com.example.demo.request.DepartmentRequest;
 
 @RestController
-@RequestMapping("/department")
+@RequestMapping("/departments")
 public class DepartmentController {
 	
 	@Autowired

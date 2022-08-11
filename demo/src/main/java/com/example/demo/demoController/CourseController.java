@@ -16,14 +16,14 @@ import com.example.demo.demoService.CourseService;
 import com.example.demo.request.CourseRequest;
 
 @RestController
-@RequestMapping("/course")
+@RequestMapping("/courses")
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
 	@Autowired
 	private CourseEntityRepo courseEntityRepo;
 	
-	@PostMapping("/AddCourse")
+	@PostMapping
 	 public ResponseEntity<Object> AddCourse(
 		       @RequestBody CourseRequest courseRequest)
 		    {
@@ -46,8 +46,7 @@ public class CourseController {
 		}
 		return new ResponseEntity<Object>("Course not Found with this id",HttpStatus.NOT_FOUND);
 		
-	}
-	
+	}	
 	private boolean courseExist(int id) {
 		return courseEntityRepo.existsById(id);
 	}

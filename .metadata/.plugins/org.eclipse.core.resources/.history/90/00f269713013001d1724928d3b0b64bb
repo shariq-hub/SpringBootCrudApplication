@@ -1,9 +1,0 @@
-package com.example.demo.request;
-
-import lombok.Data;
-
-@Data
-public class CourseRequest {
-	private String course_name;
-	private Integer teacher_id;
-}

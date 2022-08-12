@@ -32,40 +32,25 @@ public class StudentController {
     public ResponseEntity<Object> addStudent(
        @RequestBody StudentRequest studentRequest)
     {
-		if(departmentExist(studentRequest.getDepartment_id())==true){
 			 studentService.AddStudent(studentRequest);	
 			 return new ResponseEntity<Object>("Student Added Successfully",HttpStatus.CREATED);
-			
-		}
-		return new ResponseEntity<Object>("Department Not Found!",HttpStatus.NOT_FOUND);
-         
     }
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getStudent(@PathVariable(name="id") int id) {
 		StudentRequest studentRequest=new StudentRequest();
 		studentRequest=studentService.getStudent(id);
-		if(studentExist(id)) {
 		return new ResponseEntity<Object>(studentRequest,HttpStatus.OK);
-		}
-		return new ResponseEntity<Object>("Student Not Found With this Id",HttpStatus.NOT_FOUND);
+		
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Object> updateStudent(@PathVariable(name="id") int id,@RequestBody StudentRequest studentRequest){
-		if(studentExist(id)) {
 		studentService.updateStudent(id,studentRequest);
 		return new ResponseEntity<Object>("Student Update Successfully",HttpStatus.OK);
-		}
-		return new ResponseEntity<Object>("Student Not Found with this Id",HttpStatus.NOT_FOUND);
+		
 	}
 	
-	private boolean departmentExist(int id) {
-		return departmentEntityRepo.existsById(id);
-	}
-	private boolean studentExist(int id) {
-		return studentEntityRepo.existsById(id);
+	
 	}
 	
-
-}

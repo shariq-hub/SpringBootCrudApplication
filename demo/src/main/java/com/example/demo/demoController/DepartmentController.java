@@ -29,14 +29,14 @@ public class DepartmentController {
 	@PostMapping("/")
     public ResponseEntity<Object> AddDepartment(@RequestBody DepartmentRequest departmentRequest)
     {	
+		departmentService.AddDepartment(departmentRequest);
         return new ResponseEntity<Object>("Department Added Successfully!",HttpStatus.CREATED);
     }
+	
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getDepartment(@PathVariable(name="id")int id ) {
 		DepartmentRequest departmentRequest=departmentService.getDepartment(id);
-		if(departmentRequest==null) {
-			return new ResponseEntity<Object>("Department Not Found with this Id",HttpStatus.NOT_FOUND);
-		}
 		return new ResponseEntity<Object>(departmentRequest,HttpStatus.OK);
 	}
 	

@@ -2,29 +2,31 @@ package com.example.demo.demoServiceImplementation;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DemoEntity.CourseEntity;
+import com.example.demo.DemoEntity.DepartmentEntity;
+import com.example.demo.DemoEntity.TeacherEntity;
 import com.example.demo.demoRepo.CourseEntityRepo;
+import com.example.demo.demoRepo.DepartmentEntityRepo;
+import com.example.demo.demoRepo.TeacherEntityRepo;
 import com.example.demo.demoService.CourseService;
+import com.example.demo.exceptions.CourseNotFoundException;
+import com.example.demo.exceptions.TeacherNotFoundException;
 import com.example.demo.request.CourseRequest;
 
 @Service
 public class CourseServiceImplementation implements CourseService {
 	@Autowired
 	CourseEntityRepo courseEntityRepo;
+	@Autowired
+	TeacherEntityRepo teacherEntityRepo;
 	
-    public void AddCourse(CourseRequest courseRequest) {
-			ModelMapper modelMapper=new ModelMapper();
-			CourseEntity courseEntity=new CourseEntity();
-			courseEntity=modelMapper.map(courseRequest,CourseEntity.class);
-			courseEntityRepo.save(courseEntity);	
-}
-    
+	@Autowired
+	DepartmentEntityRepo departmentEntityRepo;
+	
     public CourseRequest getCourse(int id) {
-    	CourseEntity courseEntity=courseEntityRepo.findById(id).get();
+    	CourseEntity courseEntity=courseEntityRepo.findById(id).orElseThrow(()-> new CourseNotFoundException(id));
     	ModelMapper modelMapper=new ModelMapper();
     	CourseRequest courseRequest=new CourseRequest();
     	courseRequest=modelMapper.map(courseEntity, CourseRequest.class);
@@ -34,7 +36,7 @@ public class CourseServiceImplementation implements CourseService {
 
     public void updateCourse(CourseRequest courseRequest,int id) {
     	CourseEntity courseEntity=new CourseEntity();
-    	courseEntity=courseEntityRepo.findById(id).get();
+    	courseEntity=courseEntityRepo.findById(id).orElseThrow(()-> new CourseNotFoundException(id));
     	courseEntity.setCourse_name(courseRequest.getCourse_name());
     	//courseEntity.getTeacherEntity().setId(courseRequest.getTeacher_id());
     	//courseEntity.setTeacherEntity(courseRequest.getTeacher_id());

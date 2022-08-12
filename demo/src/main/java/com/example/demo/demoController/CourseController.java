@@ -20,16 +20,7 @@ import com.example.demo.request.CourseRequest;
 public class CourseController {
 	@Autowired
 	private CourseService courseService;
-	@Autowired
-	private CourseEntityRepo courseEntityRepo;
 	
-	@PostMapping("/")
-	 public ResponseEntity<Object> AddCourse(
-		       @RequestBody CourseRequest courseRequest)
-		    {
-		         courseService.AddCourse(courseRequest);
-		         return new ResponseEntity<Object>("Course Added Successfully",HttpStatus.CREATED);
-		    }
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getCourse(@PathVariable int id) {
@@ -39,16 +30,10 @@ public class CourseController {
 	
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateCourse(@RequestBody CourseRequest courseRequest,@PathVariable int id){
-		if(courseExist(id)) {
+	public ResponseEntity<Object> updateCourse(@RequestBody CourseRequest courseRequest,@PathVariable int id){	
 		courseService.updateCourse(courseRequest, id);
 		return new ResponseEntity<Object>("Course Updated Successfully",HttpStatus.OK);
-		}
-		return new ResponseEntity<Object>("Course not Found with this id",HttpStatus.NOT_FOUND);
-		
 	}	
-	private boolean courseExist(int id) {
-		return courseEntityRepo.existsById(id);
-	}
+	
 
 }

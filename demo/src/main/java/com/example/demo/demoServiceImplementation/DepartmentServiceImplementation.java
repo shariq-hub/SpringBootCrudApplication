@@ -14,6 +14,8 @@ import com.example.demo.demoRepo.CourseEntityRepo;
 import com.example.demo.demoRepo.DepartmentEntityRepo;
 import com.example.demo.demoRepo.TeacherEntityRepo;
 import com.example.demo.demoService.DepartmentService;
+import com.example.demo.exceptions.DepartmentNotFoundException;
+import com.example.demo.exceptions.TeacherNotFoundException;
 import com.example.demo.request.DepartmentRequest;
 import com.example.demo.request.TeacherRequest;
 
@@ -30,6 +32,8 @@ public class DepartmentServiceImplementation implements DepartmentService {
 	
 	@Autowired
 	 TeacherEntityRepo teacherEntityRepo;
+	
+	
 	public void AddDepartment(DepartmentRequest departmentRequest) {
 		
 		
@@ -45,15 +49,15 @@ public class DepartmentServiceImplementation implements DepartmentService {
 			   
 			   departmentEntityRepo.save(department);	
 		
-}
+
 	
-	
+	}
 	public DepartmentRequest getDepartment(int id) {
 		ModelMapper modelMapper=new ModelMapper();
 		DepartmentRequest departmentRequest=new DepartmentRequest();
 		 DepartmentEntity departmentEntity=new DepartmentEntity();
 		//TeacherEntity teacherEntity=new TeacherEntity();
-		departmentEntity=departmentEntityRepo.findById(id).get();
+		departmentEntity=departmentEntityRepo.findById(id).orElseThrow(()-> new DepartmentNotFoundException(id));
 		departmentRequest=modelMapper.map(departmentEntity, DepartmentRequest.class);
 		//teacherEntity=teacherEntityRepo.findById(departmentRequest.getCourseEntity().get())
 		return departmentRequest;

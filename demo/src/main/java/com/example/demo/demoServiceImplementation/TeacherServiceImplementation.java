@@ -10,6 +10,7 @@ import com.example.demo.DemoEntity.DepartmentEntity;
 import com.example.demo.DemoEntity.TeacherEntity;
 import com.example.demo.demoRepo.TeacherEntityRepo;
 import com.example.demo.demoService.TeacherService;
+import com.example.demo.exceptions.TeacherNotFoundException;
 import com.example.demo.request.TeacherRequest;
 
 @Service
@@ -29,7 +30,7 @@ public class TeacherServiceImplementation implements TeacherService {
 		TeacherRequest teacherRequest=new TeacherRequest();
 		ModelMapper modelMapper=new ModelMapper();
 		TeacherEntity teacherEntity=new TeacherEntity();
-		teacherEntity=teacherEntityRepo.findById(id).get();
+		teacherEntity=teacherEntityRepo.findById(id).orElseThrow(()-> new TeacherNotFoundException(id));
 		teacherRequest=modelMapper.map(teacherEntity, TeacherRequest.class);
 		return teacherRequest;
 	}
@@ -38,7 +39,7 @@ public class TeacherServiceImplementation implements TeacherService {
 		//ModelMapper modelMapper=new ModelMapper();
 		TeacherEntity teacherEntity=new TeacherEntity();
 		//TeacherRequest teacherRequest2=new TeacherRequest();
-		teacherEntity=teacherEntityRepo.findById(id).get();
+		teacherEntity=teacherEntityRepo.findById(id).orElseThrow(()-> new TeacherNotFoundException(id));
 		teacherEntity.setName(teacherRequest.getName());
 		teacherEntity.setCell(teacherRequest.getCell());
 		teacherEntity.setEmail(teacherRequest.getEmail());

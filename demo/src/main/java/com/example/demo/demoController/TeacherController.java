@@ -41,11 +41,9 @@ public class TeacherController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getTeacher(@PathVariable(name="id") int id) {
 		TeacherRequest teacherRequest=new TeacherRequest();
-		if(Teaexist(id)==true) {
-		 teacherRequest=teacherService.getTeacher(id);
+	     teacherRequest=teacherService.getTeacher(id);
 		 return new ResponseEntity<Object>(teacherRequest,HttpStatus.OK);
-		}
-		return new ResponseEntity<Object>("Teacher Not Found With this id",HttpStatus.NOT_FOUND);
+		
 	}
 	
 	@PutMapping("/{id}")

@@ -11,7 +11,6 @@ public class DepartmentRequest {
 	
 	private String name;
 	private String description;
-	@JsonIgnore
 	private List<CourseRequest> courseEntity;
 	
 	

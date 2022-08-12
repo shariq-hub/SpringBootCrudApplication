@@ -25,13 +25,13 @@ public class TeacherController {
 	@Autowired
 	TeacherEntityRepo teacherEntityRepo;
 	
-	@PostMapping
+	@PostMapping("/")
     public ResponseEntity<Object> AddTeacher(
        @RequestBody TeacherRequest teacherRequest)
     {
 		if(Teaexist(teacherRequest.getId())==false) { 
          teacherService.AddTeacher(teacherRequest);
-         return new ResponseEntity<Object>(HttpStatus.OK);
+         return new ResponseEntity<Object>(HttpStatus.CREATED);
 		}
 		return new ResponseEntity<Object>("Teacher Already Exist With this id",HttpStatus.NOT_FOUND);
     }

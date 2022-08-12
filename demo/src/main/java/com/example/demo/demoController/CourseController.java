@@ -23,12 +23,12 @@ public class CourseController {
 	@Autowired
 	private CourseEntityRepo courseEntityRepo;
 	
-	@PostMapping
+	@PostMapping("/")
 	 public ResponseEntity<Object> AddCourse(
 		       @RequestBody CourseRequest courseRequest)
 		    {
 		         courseService.AddCourse(courseRequest);
-		         return new ResponseEntity<Object>("Course Added Successfully",HttpStatus.OK);
+		         return new ResponseEntity<Object>("Course Added Successfully",HttpStatus.CREATED);
 		    }
 	
 	@GetMapping("/{id}")

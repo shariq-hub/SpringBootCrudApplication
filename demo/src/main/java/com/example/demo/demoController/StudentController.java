@@ -26,13 +26,15 @@ public class StudentController {
 	
 	@Autowired
 	DepartmentEntityRepo departmentEntityRepo;
-	@PostMapping
+	
+	
+	@PostMapping("/")
     public ResponseEntity<Object> addStudent(
        @RequestBody StudentRequest studentRequest)
     {
 		if(departmentExist(studentRequest.getDepartment_id())==true){
 			 studentService.AddStudent(studentRequest);	
-			 return new ResponseEntity<Object>("Student Added Successfully",HttpStatus.OK);
+			 return new ResponseEntity<Object>("Student Added Successfully",HttpStatus.CREATED);
 			
 		}
 		return new ResponseEntity<Object>("Department Not Found!",HttpStatus.NOT_FOUND);

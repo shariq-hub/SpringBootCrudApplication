@@ -26,10 +26,10 @@ public class DepartmentController {
 	
 	
 	
-	@PostMapping("/Add")
+	@PostMapping("/")
     public ResponseEntity<Object> AddDepartment(@RequestBody DepartmentRequest departmentRequest)
     {	
-        return new ResponseEntity<Object>("Department Added Successfully!",HttpStatus.OK);
+        return new ResponseEntity<Object>("Department Added Successfully!",HttpStatus.CREATED);
     }
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> getDepartment(@PathVariable(name="id")int id ) {

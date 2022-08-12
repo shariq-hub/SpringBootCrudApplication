@@ -12190,3 +12190,54 @@ java.util.concurrent.TimeoutException
 	at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1655)
 	at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1622)
 	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:165)
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-12 09:55:29.868
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-12 09:55:29.870
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-12 09:56:20.326
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-12 09:56:20.330
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)
+
+!ENTRY org.eclipse.egit.core 4 0 2022-08-12 10:00:36.432
+!MESSAGE An exception occurred during push on URI https://github.com/shariq-hub/SpringBootCrudApplication.git: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+!STACK 0
+org.eclipse.jgit.errors.TransportException: https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:685)
+	at org.eclipse.jgit.transport.TransportHttp.connect(TransportHttp.java:627)
+	at org.eclipse.jgit.transport.TransportHttp.openPush(TransportHttp.java:541)
+	at org.eclipse.jgit.transport.PushProcess.execute(PushProcess.java:138)
+	at org.eclipse.jgit.transport.Transport.push(Transport.java:1385)
+	at org.eclipse.egit.core.op.PushOperation.run(PushOperation.java:254)
+	at org.eclipse.egit.ui.internal.push.PushJob.performJob(PushJob.java:86)
+	at org.eclipse.egit.ui.internal.jobs.RepositoryJob.run(RepositoryJob.java:59)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+
+!ENTRY org.eclipse.egit.ui 4 0 2022-08-12 10:00:36.433
+!MESSAGE Can't connect to any repository: https://github.com/shariq-hub/SpringBootCrudApplication.git (https://github.com/shariq-hub/SpringBootCrudApplication.git: not authorized)

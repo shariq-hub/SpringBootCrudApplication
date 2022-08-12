@@ -8,5 +8,6 @@ public interface DepartmentService {
 	public void AddDepartment(DepartmentRequest departmentRequest);
 	public DepartmentRequest getDepartment(int id);
 	//public DepartmentEntity returnDeparmentObj();
+	public void deleteDepartment(int id);
 
 }

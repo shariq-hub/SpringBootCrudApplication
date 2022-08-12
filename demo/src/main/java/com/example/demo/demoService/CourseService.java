@@ -7,5 +7,5 @@ public interface CourseService {
 	//public void AddCourse(CourseRequest courseRequest);
 	public CourseRequest getCourse(int id);
 	public void updateCourse(CourseRequest courseRequest,int id);
-
+	public void deleteCourse(int id);
 }

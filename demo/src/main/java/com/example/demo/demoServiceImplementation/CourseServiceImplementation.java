@@ -43,6 +43,11 @@ public class CourseServiceImplementation implements CourseService {
     	courseEntityRepo.save(courseEntity);
     	
     }
+    
+    public void deleteCourse(int id) {
+    	CourseEntity courseEntity=courseEntityRepo.findById(id).orElseThrow(()-> new CourseNotFoundException(id));
+    	courseEntityRepo.delete(courseEntity);
+    }
 	
 
 }

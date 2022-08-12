@@ -63,6 +63,11 @@ public class DepartmentServiceImplementation implements DepartmentService {
 		return departmentRequest;
 	}
 	
+	public void deleteDepartment(int id) {
+		DepartmentEntity departmentEntity=departmentEntityRepo.findById(id).orElseThrow(()-> new DepartmentNotFoundException(id));
+		departmentEntityRepo.delete(departmentEntity);
+	}
+	
 	
 
 	

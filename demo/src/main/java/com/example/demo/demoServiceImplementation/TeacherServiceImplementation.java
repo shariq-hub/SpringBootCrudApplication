@@ -47,6 +47,9 @@ public class TeacherServiceImplementation implements TeacherService {
 		//teacherRequest2=modelMapper.map(teacherEntity, TeacherRequest.class);
 		//return teacherRequest2;
 	}
-
-
+	
+	public void deleteTeacher(int id) {
+		TeacherEntity teacherEntity=teacherEntityRepo.findById(id).orElseThrow(()-> new TeacherNotFoundException(id));
+		teacherEntityRepo.delete(teacherEntity);
+	}
 }

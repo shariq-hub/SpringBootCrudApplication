@@ -62,6 +62,11 @@ public class StudentServiceImplementation implements StudentService {
 		
 	}
 	
+	public void deleteStudent(int id) {
+		StudentEntity studentEntity=studentEntityRepo.findById(id).orElseThrow(()-> new StudentNotFoundException(id));
+		studentEntityRepo.delete(studentEntity);
+	}
+	
 	
 	
 		}

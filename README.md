@@ -1,4 +1,3 @@
 # SpringBootCrudApplication
 I created this Application for Improving my basic knowledge regarding Api 
-
-In this Applicaiton I have made it with proper Exxceptional handling and with clean code and try my best of creating REST API'S
+I made few API"S for Educational Content a student can select one department and multiple courses , with respect to every course there will be a teacher of that course we can get each student data with the help of GET Request, I consistently making the API more and more useful

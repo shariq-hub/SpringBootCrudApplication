@@ -12,8 +12,7 @@ import com.example.demo.DemoEntity.StudentEntity;
 import com.example.demo.demoRepo.DepartmentEntityRepo;
 import com.example.demo.demoRepo.StudentEntityRepo;
 import com.example.demo.demoService.StudentService;
-import com.example.demo.exceptions.DepartmentNotFoundException;
-import com.example.demo.exceptions.StudentNotFoundException;
+import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.request.StudentRequest;
 
 @Service
@@ -28,7 +27,7 @@ public class StudentServiceImplementation implements StudentService {
 		   ModelMapper modelMapper=new ModelMapper();
 		   modelMapper.getConfiguration()
 		   .setMatchingStrategy(MatchingStrategies.STANDARD);
-		    DepartmentEntity departmentEntity=departmentEntityRepo.findById(studentRequest.getDepartment_id()).orElseThrow(()-> new DepartmentNotFoundException(studentRequest.getDepartment_id()));
+		    DepartmentEntity departmentEntity=departmentEntityRepo.findById(studentRequest.getDepartment_id()).orElseThrow(()->new ResourceNotFoundException("Department", "Department_id", studentRequest.getDepartment_id()));
 			StudentEntity studentEntity=modelMapper.map(studentRequest,StudentEntity.class); // map the Entity with Request& Convert the request to entity
 			studentEntity.setDepartment_entity(departmentEntity); 
 			studentEntityRepo.save(studentEntity);
@@ -39,7 +38,7 @@ public class StudentServiceImplementation implements StudentService {
 	public StudentRequest getStudent(int id){
 		ModelMapper modelMapper=new ModelMapper();
 		StudentEntity studentEntity=new StudentEntity();
-		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new StudentNotFoundException(id));
+		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","Student_id",id));
 		StudentRequest studentRequest=modelMapper.map(studentEntity, StudentRequest.class);
 		studentRequest.setDepartment_id(studentEntity.getDepartment_entity().getId());
 		return studentRequest;		
@@ -49,7 +48,7 @@ public class StudentServiceImplementation implements StudentService {
 		//ModelMapper modelMapper=new ModelMapper();
 		StudentEntity studentEntity=new StudentEntity();
 		//StudentRequest studentRequest2=new StudentRequest();
-		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new StudentNotFoundException(id));
+		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","Student_id",id));
 		studentEntity.setName(studentRequest.getName());
 		studentEntity.setRoll_no(studentRequest.getRoll_no());
 		studentEntity.setEmail(studentRequest.getEmail());
@@ -63,7 +62,7 @@ public class StudentServiceImplementation implements StudentService {
 	}
 	
 	public void deleteStudent(int id) {
-		StudentEntity studentEntity=studentEntityRepo.findById(id).orElseThrow(()-> new StudentNotFoundException(id));
+		StudentEntity studentEntity=studentEntityRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Student","Student_id",id));
 		studentEntityRepo.delete(studentEntity);
 	}
 	

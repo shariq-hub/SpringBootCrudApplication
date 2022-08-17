@@ -11,34 +11,12 @@ import com.example.demo.request.ApiResponse;
 public class GlobalExceptionHandler {
 	
 	
-	@ExceptionHandler(DepartmentNotFoundException.class)
-	public ResponseEntity<Object> departmentNotFoundExceptionHandler(DepartmentNotFoundException ex){
+	@ExceptionHandler(ResourceNotFoundException.class)
+	public ResponseEntity<Object> departmentNotFoundExceptionHandler(ResourceNotFoundException ex){
 		String message=ex.getMessage();
 		ApiResponse apiResponse=new ApiResponse(message,false);
 		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
 		
-	}
-	
-	@ExceptionHandler(StudentNotFoundException.class)
-	public ResponseEntity<Object> studentNotFoundException(StudentNotFoundException ex){
-		String message=ex.getMessage();
-		ApiResponse apiResponse=new ApiResponse(message,false);
-		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
-		
-	}
-	
-	@ExceptionHandler(TeacherNotFoundException.class)
-	public ResponseEntity<Object> teacherNotFoundException(TeacherNotFoundException ex){
-		String message=ex.getMessage();
-		ApiResponse apiResponse=new ApiResponse(message,false);
-		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
-	}
-	
-	@ExceptionHandler(CourseNotFoundException.class)
-	public ResponseEntity<Object> courseNotFoundException(CourseNotFoundException ex){
-		String message=ex.getMessage();
-		ApiResponse apiResponse=new ApiResponse(message,false);
-		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
 	}
 
 }

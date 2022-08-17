@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-
+@Data
 public class DepartmentRequest {
 	
 	private String name;
@@ -24,7 +24,7 @@ public class DepartmentRequest {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	@JsonIgnore
+	
 	public List<CourseRequest> getCourseEntity() {
 		return courseEntity;
 	}

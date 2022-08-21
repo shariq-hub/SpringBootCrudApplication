@@ -18,21 +18,19 @@ import com.example.demo.request.StudentRequest;
 @Service
 public class StudentServiceImplementation implements StudentService {
 	@Autowired
-	StudentEntityRepo studentEntityRepo;
+	private StudentEntityRepo studentEntityRepo;
 	@Autowired
-	DepartmentEntityRepo departmentEntityRepo;
+	private DepartmentEntityRepo departmentEntityRepo;
 	
+	@Autowired
+	private ModelMapper modelMapper;
 	
-	public ResponseEntity<Object> AddStudent(StudentRequest studentRequest) {
-		   ModelMapper modelMapper=new ModelMapper();
-		   modelMapper.getConfiguration()
-		   .setMatchingStrategy(MatchingStrategies.STANDARD);
-		    DepartmentEntity departmentEntity=departmentEntityRepo.findById(studentRequest.getDepartment_id()).orElseThrow(()->new ResourceNotFoundException("Department", "Department_id", studentRequest.getDepartment_id()));
-			StudentEntity studentEntity=modelMapper.map(studentRequest,StudentEntity.class); // map the Entity with Request& Convert the request to entity
-			studentEntity.setDepartment_entity(departmentEntity); 
-			studentEntityRepo.save(studentEntity);
-			return new ResponseEntity<Object>(HttpStatus.CREATED);
-		
+	public ResponseEntity<Object> AddStudent(StudentRequest studentRequest,int id) {
+		DepartmentEntity departmentEntity=departmentEntityRepo.findById(id).get();
+		StudentEntity studentEntity=modelMapper.map(studentRequest, StudentEntity.class);
+		studentEntity.setDepartment_entity(departmentEntity);
+		studentEntityRepo.save(studentEntity);
+		return new ResponseEntity<Object>(HttpStatus.CREATED);
 			}
 	
 	public StudentRequest getStudent(int id){
@@ -40,7 +38,6 @@ public class StudentServiceImplementation implements StudentService {
 		StudentEntity studentEntity=new StudentEntity();
 		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","Student_id",id));
 		StudentRequest studentRequest=modelMapper.map(studentEntity, StudentRequest.class);
-		studentRequest.setDepartment_id(studentEntity.getDepartment_entity().getId());
 		return studentRequest;		
 	}
 	

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.demoRepo.DepartmentEntityRepo;
 import com.example.demo.demoService.DepartmentService;
 import com.example.demo.request.ApiResponse;
+import com.example.demo.request.CourseRequest;
 import com.example.demo.request.DepartmentRequest;
 
 @RestController

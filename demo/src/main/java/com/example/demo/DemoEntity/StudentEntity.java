@@ -33,7 +33,7 @@ public class StudentEntity {
 	@Column
 	private String email;
 	@ManyToOne
-	@JoinColumn(name="student_department_id")
+	@JoinColumn(name="department_id")
 	private DepartmentEntity department_entity;
 	
 	

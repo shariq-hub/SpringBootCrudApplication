@@ -31,8 +31,7 @@ public class DepartmentEntity {
 	private String Description;
 	
 	//@OneToMany(fetch = FetchType.LAZY, mappedBy = "departmentEntity")
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DEPARTMENT_ID")
+	@OneToMany(mappedBy = "departmentEntity",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<CourseEntity> courseEntity;
 	
 

@@ -30,9 +30,9 @@ public class StudentController {
 	DepartmentEntityRepo departmentEntityRepo;
 	
 	
-	@PostMapping("/{department_id}")
+	@PostMapping("/{id}")
     public ResponseEntity<Object> addStudent(
-       @RequestBody StudentRequest studentRequest,@PathVariable Integer department_id)
+       @RequestBody StudentRequest studentRequest,@PathVariable(name="id") Integer department_id)
     {
 			 studentService.AddStudent(studentRequest,department_id);	
 			 return new ResponseEntity<Object>(new ApiResponse("Student Added Successfully",true),HttpStatus.CREATED);

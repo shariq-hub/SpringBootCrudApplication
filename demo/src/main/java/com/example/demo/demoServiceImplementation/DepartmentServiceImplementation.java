@@ -34,12 +34,12 @@ public class DepartmentServiceImplementation implements DepartmentService {
 		
 		
 			   ModelMapper modelMapper=new ModelMapper();
-			   modelMapper.getConfiguration()
-			   .setMatchingStrategy(MatchingStrategies.STRICT);
-			   departmentRequest.getCourseEntity().forEach(x->{   // here I first move into the first course 
-				   TeacherEntity teacherEntity = teacherEntityRepo.findById(x.getTeacher_id()).orElseThrow(()->new ResourceNotFoundException("Teacher","Teacher_id",x.getTeacher_id()));//Get First Teacher Details
-				   x.setTeacherEntity(modelMapper.map(teacherEntity, TeacherRequest.class));  //mapped the teacher to entity, Convert Entity to Request
-			   });
+//			   modelMapper.getConfiguration()
+//			   .setMatchingStrategy(MatchingStrategies.STRICT);
+//			   departmentRequest.getCourseEntity().forEach(x->{   // here I first move into the first course 
+//				   TeacherEntity teacherEntity = teacherEntityRepo.findById(x.getTeacher_id()).orElseThrow(()->new ResourceNotFoundException("Teacher","Teacher_id",x.getTeacher_id()));//Get First Teacher Details
+//				   x.setTeacherEntity(modelMapper.map(teacherEntity, TeacherRequest.class));  //mapped the teacher to entity, Convert Entity to Request
+//			   });
 //				 department=new DepartmentEntity();
 			   DepartmentEntity	department=modelMapper.map(departmentRequest,DepartmentEntity.class);
 			   

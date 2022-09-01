@@ -25,12 +25,11 @@ public class StudentServiceImplementation implements StudentService {
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public ResponseEntity<Object> AddStudent(StudentRequest studentRequest,int id) {
+	public void AddStudent(StudentRequest studentRequest,int id) {
 		DepartmentEntity departmentEntity=departmentEntityRepo.findById(id).get();
 		StudentEntity studentEntity=modelMapper.map(studentRequest, StudentEntity.class);
 		studentEntity.setDepartment_entity(departmentEntity);
 		studentEntityRepo.save(studentEntity);
-		return new ResponseEntity<Object>(HttpStatus.CREATED);
 			}
 	
 	public StudentRequest getStudent(int id){
@@ -38,6 +37,7 @@ public class StudentServiceImplementation implements StudentService {
 		StudentEntity studentEntity=new StudentEntity();
 		studentEntity=studentEntityRepo.findById(id).orElseThrow(()->new ResourceNotFoundException("Student","Student_id",id));
 		StudentRequest studentRequest=modelMapper.map(studentEntity, StudentRequest.class);
+		studentRequest.setDepartment_id(studentEntity.getDepartment_entity().getId());
 		return studentRequest;		
 	}
 	

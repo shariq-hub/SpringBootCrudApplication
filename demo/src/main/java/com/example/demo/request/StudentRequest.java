@@ -9,4 +9,5 @@ public class StudentRequest {
 	private int roll_no;
 	private String name;
 	private String email;
+	private int department_id;
 }

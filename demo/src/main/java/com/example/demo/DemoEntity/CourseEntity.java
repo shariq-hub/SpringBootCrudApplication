@@ -24,6 +24,9 @@ public class CourseEntity {
 	@JoinColumn(name="teacher_id")
 	private TeacherEntity teacherEntity;
 	
+	@ManyToOne
+	private DepartmentEntity departmentEntity;
+	
 	
 	
 //	@JsonIgnore

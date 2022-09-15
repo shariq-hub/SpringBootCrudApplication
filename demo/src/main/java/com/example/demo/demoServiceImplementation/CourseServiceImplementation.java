@@ -49,10 +49,15 @@ public class CourseServiceImplementation implements CourseService {
     	return courseRequest;
     }
 
-    public void updateCourse(CourseRequest courseRequest,int id) {
+    public void updateCourse(CourseRequest courseRequest,int id,int tea_id) {
     	CourseEntity courseEntity=new CourseEntity();
+    	TeacherEntity teacherEntity=new TeacherEntity();
     	courseEntity=courseEntityRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Course","Course_id",id));
+    	teacherEntity=teacherEntityRepo.findById(tea_id).orElseThrow(()-> new ResourceNotFoundException("Teacher","Teacher_id",tea_id));
     	courseEntity.setCourse_name(courseRequest.getCourse_name());
+    	courseEntity.setTeacherEntity(teacherEntity);
+    	
+    	//courseEntity.setTeacherEntity(modelMapper.map(courseRequest.getTeacherEntity(),TeacherEntity.class));
     	//courseEntity.getTeacherEntity().setId(courseRequest.getTeacher_id());
     	//courseEntity.setTeacherEntity(courseRequest.getTeacher_id());
     	courseEntityRepo.save(courseEntity);

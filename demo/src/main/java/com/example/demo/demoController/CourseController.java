@@ -39,9 +39,9 @@ public class CourseController {
 	}
 	
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Object> updateCourse(@RequestBody CourseRequest courseRequest,@PathVariable int id){	
-		courseService.updateCourse(courseRequest, id);
+	@PutMapping("/{id}/{tea_id}")
+	public ResponseEntity<Object> updateCourse(@RequestBody CourseRequest courseRequest,@PathVariable int id,@PathVariable(name="tea_id") int tea_id){	
+		courseService.updateCourse(courseRequest, id,tea_id);
 		return new ResponseEntity<Object>(new ApiResponse("Course updated Successfully",true),HttpStatus.OK);
 	}	
 	

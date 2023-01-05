@@ -21,13 +21,14 @@ import com.example.demo.request.TeacherRequest;
 
 @Service
 public class DepartmentServiceImplementation implements DepartmentService {
+	
+	
 	@Autowired
 	DepartmentEntityRepo departmentEntityRepo;
 	@Autowired
 	CourseEntityRepo courseEntityRepo;
-	
 	@Autowired
-	 TeacherEntityRepo teacherEntityRepo;
+	TeacherEntityRepo teacherEntityRepo;
 	
 	
 	public void AddDepartment(DepartmentRequest departmentRequest) {
@@ -51,7 +52,7 @@ public class DepartmentServiceImplementation implements DepartmentService {
 	public DepartmentRequest getDepartment(int id) {
 		ModelMapper modelMapper=new ModelMapper();
 		DepartmentRequest departmentRequest=new DepartmentRequest();
-		 DepartmentEntity departmentEntity=new DepartmentEntity();
+		DepartmentEntity departmentEntity=new DepartmentEntity();
 		//TeacherEntity teacherEntity=new TeacherEntity();
 		departmentEntity=departmentEntityRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Department","Department_id",id));
 		departmentRequest=modelMapper.map(departmentEntity, DepartmentRequest.class);

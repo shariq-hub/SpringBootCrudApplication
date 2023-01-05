@@ -1,7 +1,11 @@
 package com.example.demo.demoServiceImplementation;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.DemoEntity.CourseEntity;
@@ -13,6 +17,7 @@ import com.example.demo.demoRepo.TeacherEntityRepo;
 import com.example.demo.demoService.CourseService;
 import com.example.demo.exceptions.ResourceNotFoundException;
 import com.example.demo.request.CourseRequest;
+
 
 @Service
 public class CourseServiceImplementation implements CourseService {
@@ -26,7 +31,11 @@ public class CourseServiceImplementation implements CourseService {
 	
 	@Autowired
 	ModelMapper modelMapper;
+	
+    private static final Logger LOG = LoggerFactory.getLogger(CourseServiceImplementation.class);
 
+
+	
 	public void AddCourse(CourseRequest courseRequest,int dep_id,int tea_id) {
 		CourseEntity courseEntity=new CourseEntity();
 		DepartmentEntity departmentEntity=new DepartmentEntity();
@@ -42,7 +51,11 @@ public class CourseServiceImplementation implements CourseService {
 	
 	
     public CourseRequest getCourse(int id) {
+    	//page numner, Page Size
+    	//PageRequest p=PageRequest.of(2, 10);
     	CourseEntity courseEntity=courseEntityRepo.findById(id).orElseThrow(()-> new ResourceNotFoundException("Course","Course_id",id));
+    	//Page<CourseEntity> a=courseEntityRepo.findAll(p);
+    	//LOG.info("Message is "+a.toString());
     	ModelMapper modelMapper=new ModelMapper();
     	CourseRequest courseRequest=new CourseRequest();
     	courseRequest=modelMapper.map(courseEntity, CourseRequest.class);

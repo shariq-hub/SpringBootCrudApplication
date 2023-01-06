@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.demoService.SignUpService;
 import com.example.demo.request.UserRequest;
 import com.example.demo.util.JwtUtil;
 
@@ -17,7 +18,12 @@ public class AuthenticateController {
 	private AuthenticationManager authenticationManager;
 	
 	 @Autowired
-	    private JwtUtil jwtUtil;
+	 private JwtUtil jwtUtil;
+	 
+	 
+	 @Autowired
+	 private SignUpService signUpService;
+	 
 	
 	@PostMapping("/authenticate")
 	public String authenticate(@RequestBody UserRequest userRequest) throws Exception {
@@ -28,6 +34,13 @@ public class AuthenticateController {
 		}
 		  return jwtUtil.generateToken(userRequest.getUserName());
 		}
+	@PostMapping("/signUp")
+	public String signUp(@RequestBody UserRequest userRequest) {
+		String answer=signUpService.signUp(userRequest);
+		return answer;
+	}
+	
+	
 	
 	
 

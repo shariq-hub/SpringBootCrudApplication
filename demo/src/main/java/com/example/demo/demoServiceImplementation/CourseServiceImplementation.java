@@ -37,6 +37,7 @@ public class CourseServiceImplementation implements CourseService {
 
 	
 	public void AddCourse(CourseRequest courseRequest,int dep_id,int tea_id) {
+		LOG.info("Inside AddCourse Method");
 		CourseEntity courseEntity=new CourseEntity();
 		DepartmentEntity departmentEntity=new DepartmentEntity();
 		TeacherEntity teacherEntity=new TeacherEntity();
@@ -45,6 +46,7 @@ public class CourseServiceImplementation implements CourseService {
 		courseEntity=modelMapper.map(courseRequest, CourseEntity.class);
 		courseEntity.setTeacherEntity(teacherEntity);
 		courseEntity.setDepartmentEntity(departmentEntity);
+		LOG.info("Saving User Information");
 		courseEntityRepo.save(courseEntity);
 	}
 	

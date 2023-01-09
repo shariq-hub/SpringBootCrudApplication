@@ -2,6 +2,8 @@ package com.example.demo.demoServiceImplementation;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,10 +32,13 @@ public class DepartmentServiceImplementation implements DepartmentService {
 	@Autowired
 	TeacherEntityRepo teacherEntityRepo;
 	
+	private static final Logger LOG = LoggerFactory.getLogger(DepartmentServiceImplementation.class);
+
+	
 	
 	public void AddDepartment(DepartmentRequest departmentRequest) {
 		
-		
+		       LOG.info("Inside Add Department Method");
 			   ModelMapper modelMapper=new ModelMapper();
 //			   modelMapper.getConfiguration()
 //			   .setMatchingStrategy(MatchingStrategies.STRICT);
@@ -50,6 +55,7 @@ public class DepartmentServiceImplementation implements DepartmentService {
 	
 	}
 	public DepartmentRequest getDepartment(int id) {
+		LOG.info("Inside GetDepartment Method()");
 		ModelMapper modelMapper=new ModelMapper();
 		DepartmentRequest departmentRequest=new DepartmentRequest();
 		DepartmentEntity departmentEntity=new DepartmentEntity();

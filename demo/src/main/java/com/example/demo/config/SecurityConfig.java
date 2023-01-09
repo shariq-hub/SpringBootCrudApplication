@@ -40,8 +40,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
 		try {
-			auth.userDetailsService(userDetailService);
-			//.passwordEncoder(this.bCryptPasswordEncoder);
+			auth.userDetailsService(userDetailService).passwordEncoder(this.bCryptPasswordEncoder);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -49,13 +48,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	  @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
-	    @Override
+	  @Override
 	    public AuthenticationManager authenticationManagerBean() throws Exception {
 	        return super.authenticationManagerBean();
 	    }
 	  @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        http.csrf().disable().authorizeRequests().antMatchers("/authenticate","/signUp")
+	        http.requiresChannel().anyRequest().requiresSecure().and().csrf().disable().authorizeRequests().antMatchers("/authenticate","/signUp")
 	                .permitAll().anyRequest().authenticated()
 	                .and().exceptionHandling().and().sessionManagement()
 	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

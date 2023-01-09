@@ -41,7 +41,7 @@ public class JWTFilter extends OncePerRequestFilter{
 			token=Authorizationheader.substring(7);
 			userName=jwtUtil.extractUsername(token);
 		}
-		
+		//Here we check if user name is not null and there is no any authenticated user
 		if(userName!=null && SecurityContextHolder.getContext().getAuthentication()==null) {
 			UserDetails userDetails=userDetailServiceImpl.loadUserByUsername(userName);
 			
@@ -55,9 +55,6 @@ public class JWTFilter extends OncePerRequestFilter{
 			}
 		}
 		filterChain.doFilter(request, response);
-		
-		
-		
 		
 	}
 	

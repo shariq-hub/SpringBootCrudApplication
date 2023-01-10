@@ -1,9 +1,11 @@
 package com.example.demo.demoService;
 
+import org.springframework.http.ResponseEntity;
+
 import com.example.demo.request.UserRequest;
 
 public interface SignUpService {
 	
-	public String signUp(UserRequest userRequest);
+	public ResponseEntity<Object> signUp(UserRequest userRequest);
 
 }

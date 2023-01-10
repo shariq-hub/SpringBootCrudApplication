@@ -3,6 +3,8 @@ package com.example.demo.demoController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.demoService.SignUpService;
+import com.example.demo.exceptions.ResourceNotFoundException;
+import com.example.demo.exceptions.UserIncorrectException;
 import com.example.demo.request.UserRequest;
 import com.example.demo.util.JwtUtil;
 
@@ -36,16 +40,19 @@ public class AuthenticateController {
 			 LOG.info("Authenticating the User");
 		     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userRequest.getUserName(), userRequest.getPassword()));
 		    }catch (Exception e) {
-		      throw new Exception("Invalid UserName and Password");
+		    	//throw new Exception("User not Found");
+		   throw new UserIncorrectException(userRequest.getUserName(), userRequest.getPassword());
 		}
-		  return jwtUtil.generateToken(userRequest.getUserName());
+		 LOG.info("Authenticating User Done");
+		 return jwtUtil.generateToken(userRequest.getUserName());
+		  
 		}
 	
 	@PostMapping("/signUp")
-	public String signUp(@RequestBody UserRequest userRequest) {
+	public ResponseEntity<Object> signUp(@RequestBody UserRequest userRequest) {
 		LOG.info("Inside Singup Method!");
-		String answer=signUpService.signUp(userRequest);
-		return answer;
+	    return signUpService.signUp(userRequest);
+		//return new ResponseEntity<Object>(response);
 	}
 	
 	

@@ -12,11 +12,20 @@ public class GlobalExceptionHandler {
 	
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
-	public ResponseEntity<Object> departmentNotFoundExceptionHandler(ResourceNotFoundException ex){
+	public ResponseEntity<Object> ResourceNotFoundException(ResourceNotFoundException ex){
 		String message=ex.getMessage();
 		ApiResponse apiResponse=new ApiResponse(message,false);
 		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
 		
 	}
+	
+	@ExceptionHandler(UserIncorrectException.class)
+	public ResponseEntity<Object> UserNotFound(UserIncorrectException ex){
+		String message=ex.getMessage();
+		ApiResponse apiResponse=new ApiResponse(message,false);
+		return new ResponseEntity<Object>(apiResponse,HttpStatus.NOT_FOUND);
+	}
+	
+	
 
 }

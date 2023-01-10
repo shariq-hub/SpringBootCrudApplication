@@ -1,6 +1,7 @@
 package com.example.demo.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -37,10 +38,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+   
+
+    
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) {
 		try {
-			auth.userDetailsService(userDetailService).passwordEncoder(this.bCryptPasswordEncoder);
+			auth.userDetailsService(userDetailService);
+			//.passwordEncoder(this.bCryptPasswordEncoder);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,7 +59,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	    }
 	  @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        http.requiresChannel().anyRequest().requiresSecure().and().csrf().disable().authorizeRequests().antMatchers("/authenticate","/signUp")
+	        http.requiresChannel().anyRequest().requiresSecure()
+	        .and()
+	        .csrf().disable().authorizeRequests().antMatchers("/authenticate","/signUp","/teachers/**")
 	                .permitAll().anyRequest().authenticated()
 	                .and().exceptionHandling().and().sessionManagement()
 	                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
